@@ -12,6 +12,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(opt => 
 {
     opt.UseSqlite("Data Source=/home/esata/Projects/reactt/Reactivities/API/reactivities.db");});
+builder.Services.AddCors(opt => {
+    opt.AddPolicy("CorsPolicy", policy =>{
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,7 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();
