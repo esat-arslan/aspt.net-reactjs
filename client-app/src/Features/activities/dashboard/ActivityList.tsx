@@ -15,10 +15,12 @@ export default function ActivityList({
   submitting,
 }: Props) {
   const [target, setTarget] = useState("");
-  function handleActivityDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
+  function handleActivityDelete(
+    e: SyntheticEvent<HTMLButtonElement>,
+    id: string
+  ) {
     setTarget(e.currentTarget.name);
     deleteActivity(id);
-
   }
   return (
     <Segment>
